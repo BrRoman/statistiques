@@ -1,5 +1,28 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h1>Statistiques</h1>
+    <h1 class="my-4">Statistiques</h1>
+
+    <table class="table table-sm table-bordered">
+        <tr>
+            <th class="col-1">Moine</th>
+            <th class="col-1">Naissance</th>
+            <th class="col-1">Entrée</th>
+            <th class="col-1">Prise d'habit</th>
+            <th class="col-1">Prof. temporaire</th>
+            <th class="col-1">Prof. perpétuelle</th>
+            <th class="col-1">Ordination</th>
+        </tr>
+        {% for monk in monks %}
+            <tr>
+                <td>{{ monk }}</td>
+                <td class="text-center">{{ monk.birth|date:'d/m/Y' }}</td>
+                <td class="text-center">{{ monk.entry|date:'d/m/Y' }}</td>
+                <td class="text-center">{{ monk.habit|date:'d/m/Y' }}</td>
+                <td class="text-center">{{ monk.temporary_profession|date:'d/m/Y' }}</td>
+                <td class="text-center">{{ monk.perpetual_profession|date:'d/m/Y' }}</td>
+                <td class="text-center">{{ monk.ordination|date:'d/m/Y' }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock content %}
