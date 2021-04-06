@@ -1,7 +1,37 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h1 class="my-4">Statistiques</h1>
+    <h1 class="mt-5">Abbaye Saint-Joseph de Clairval</h1>
+    <h3 class="mb-5 green">Statistiques</h3>
+
+    <div class="col-4 mb-5">
+        <table class="table table-sm table-bordered">
+            <tr>
+                <td class="font-weight-bold">Moines :</td>
+                <td class="text-center">{{ monks }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Prêtres :</td>
+                <td class="text-center">{{ priests }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Profès perpétuels :</td>
+                <td class="text-center">{{ perpetual }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Profès temporaires :</td>
+                <td class="text-center">{{ tempo }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Novices :</td>
+                <td class="text-center">{{ novices }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Postulants :</td>
+                <td class="text-center">{{ postulants }}</td>
+            </tr>
+        </table>
+    </div>
 
     <table class="table table-sm table-bordered">
         <tr>
@@ -13,7 +43,7 @@
             <th class="col-1">Prof. perpétuelle</th>
             <th class="col-1">Ordination</th>
         </tr>
-        {% for monk in monks %}
+        {% for monk in list_of_monks %}
             <tr>
                 <td>{{ monk }}</td>
                 <td class="text-center">{{ monk.birth|date:'d/m/Y' }}</td>
