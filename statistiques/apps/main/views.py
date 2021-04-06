@@ -1,5 +1,8 @@
 """ apps/statistiques/views.py """
 
+import datetime
+from statistics import mean
+
 from django.shortcuts import render
 
 from .models import Monk
@@ -30,6 +33,14 @@ def home(request):
         Monk.objects
         .filter(ordination__isnull=False)
     )
+
+    # Average age
+    ages = []
+    monks = Monk.objects.all()
+    for index, monk in enumerate(monks):
+        ages.append((datetime.date.today() - monk.birth).days / 365)
+    average_age = mean(ages)
+
     return render(
         request,
         'main/home.html',
@@ -41,5 +52,6 @@ def home(request):
             'tempo': tempo,
             'perpetual': perpetual,
             'priests': priests,
+            'average_age': average_age,
         }
     )
