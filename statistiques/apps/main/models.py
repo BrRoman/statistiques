@@ -3,7 +3,7 @@
 from django.db import models
 
 
-class Moine(models.Model):
+class Monk(models.Model):
     """ Moine model. """
     name = models.CharField(
         max_length=25,
