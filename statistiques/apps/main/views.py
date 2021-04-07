@@ -20,13 +20,13 @@ def home(request):
     )
     novices = len(
         Monk.objects
-        .filter(temporary_profession__isnull=True)
         .filter(habit__isnull=False)
+        .filter(temporary_profession__isnull=True)
     )
     tempo = len(
         Monk.objects
-        .filter(perpetual_profession__isnull=True)
         .filter(temporary_profession__isnull=False)
+        .filter(perpetual_profession__isnull=True)
     )
     perpetual = len(
         Monk.objects
