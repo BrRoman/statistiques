@@ -1,40 +1,42 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
 {% block content %}
     <h1 class="mt-5">Abbaye Saint-Joseph de Clairval</h1>
-    <h3 class="mb-5 green">Statistiques</h3>
+    <h4 class="mb-5 green">Statistiques</h4>
 
-    <div class="col-4 mb-5">
-        <table class="table table-sm table-bordered">
-            <tr>
-                <td class="font-weight-bold">Moines :</td>
-                <td class="text-center">{{ monks }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Prêtres :</td>
-                <td class="text-center">{{ priests }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Profès perpétuels :</td>
-                <td class="text-center">{{ perpetual }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Profès temporaires :</td>
-                <td class="text-center">{{ tempo }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Novices :</td>
-                <td class="text-center">{{ novices }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Postulants :</td>
-                <td class="text-center">{{ postulants }}</td>
-            </tr>
-            <tr>
-                <td class="font-weight-bold">Âge moyen :</td>
-                <td class="text-center">{{ average_age|floatformat:2 }} ans</td>
-            </tr>
-        </table>
+    <div class="d-flex flex-column align-items-center mb-5">
+        <div class="col-8">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <td class="font-weight-bold">Moines :</td>
+                    <td class="text-center">{{ monks }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Prêtres :</td>
+                    <td class="text-center">{{ priests }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Profès perpétuels :</td>
+                    <td class="text-center">{{ perpetual }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Profès temporaires :</td>
+                    <td class="text-center">{{ tempo }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Novices :</td>
+                    <td class="text-center">{{ novices }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Postulants :</td>
+                    <td class="text-center">{{ postulants }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <img src={% static 'img/histogram.svg' %} alt="Missing histogram" class="mb-3">
     </div>
 
     <table class="table table-sm table-bordered">

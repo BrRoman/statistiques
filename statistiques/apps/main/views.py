@@ -1,6 +1,9 @@
 """ apps/statistiques/views.py """
 
-import datetime
+import numpy
+
+from datetime import date
+from matplotlib import pyplot
 from statistics import mean
 
 from django.shortcuts import render
@@ -38,8 +41,48 @@ def home(request):
     ages = []
     monks = Monk.objects.all()
     for index, monk in enumerate(monks):
-        ages.append((datetime.date.today() - monk.birth).days / 365)
+        ages.append((date.today() - monk.birth).days / 365)
+
+    # Histogram:
+    hist, bin_edges = numpy.histogram(
+        ages,
+        bins=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    )
+    pyplot.figure(figsize=[10, 5])
+    result = pyplot.bar([i + 5 for i in bin_edges[:-1]],
+                        hist, width=9, color='orange')
+    for i, patch in enumerate(list(result)):
+        if hist[i] > 0:
+            pyplot.text(bin_edges[i] + 5, hist[i] + 1, hist[i],
+                        ha='center', va='bottom')
+    pyplot.xlim(min(bin_edges), max(bin_edges))
+    pyplot.xlabel('Âge', fontsize=10)
+    pyplot.ylabel('Nombre de moines', fontsize=10)
+    pyplot.xticks(
+        numpy.arange(
+            min(bin_edges),
+            max(bin_edges),
+            10),
+        fontsize=10
+    )
+    pyplot.yticks(
+        numpy.arange(
+            0,
+            max(hist) + 5,
+            5),
+        fontsize=10
+    )
     average_age = mean(ages)
+    pyplot.text(
+        20,
+        max(hist) - 5,
+        'Moyenne : {:.2f} ans'.format(average_age),
+        fontsize=10
+    )
+    pyplot.savefig(
+        '/home/frromain/Sites/statistiques/statistiques/static/img/histogram.svg',
+        format='svg',
+    )
 
     return render(
         request,
@@ -52,6 +95,5 @@ def home(request):
             'tempo': tempo,
             'perpetual': perpetual,
             'priests': priests,
-            'average_age': average_age,
         }
     )
