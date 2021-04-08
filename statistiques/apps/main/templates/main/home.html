@@ -48,6 +48,7 @@
             <th class="col-1">Prof. temporaire</th>
             <th class="col-1">Prof. perpétuelle</th>
             <th class="col-1">Ordination</th>
+            <th class="col-1"></th>
         </tr>
         {% for monk in list_of_monks %}
             <tr>
@@ -58,6 +59,7 @@
                 <td class="text-center">{{ monk.temporary_profession|date:'d/m/Y' }}</td>
                 <td class="text-center">{{ monk.perpetual_profession|date:'d/m/Y' }}</td>
                 <td class="text-center">{{ monk.ordination|date:'d/m/Y' }}</td>
+                <td class="text-center"><a href={% url 'main:update' monk.pk %}>Modifier</a></td>
             </tr>
         {% endfor %}
     </table>

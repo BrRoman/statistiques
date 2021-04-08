@@ -6,8 +6,10 @@ from datetime import date
 from matplotlib import pyplot
 from statistics import mean
 
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, reverse
 
+from .forms import MonkForm
 from .models import Monk
 
 
@@ -95,5 +97,32 @@ def home(request):
             'tempo': tempo,
             'perpetual': perpetual,
             'priests': priests,
+        }
+    )
+
+
+def update(request, **kwargs):
+    """ Update a monk. """
+    monk = Monk.objects.get(pk=kwargs['pk'])
+
+    if request.method == 'POST':
+        form = MonkForm(request.POST, instance=monk)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(
+                reverse('main:home')
+            )
+
+    else:
+        form = MonkForm(instance=monk)
+
+    print(form)
+
+    return render(
+        request,
+        'main/form.html',
+        {
+            'form': form,
+            'monk': monk,
         }
     )

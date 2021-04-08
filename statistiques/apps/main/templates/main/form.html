@@ -1,0 +1,202 @@
+{% extends 'main.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <h2 class="mb-2 green font-weight-bold">{{ monk }}</h2>
+
+    <a href={% url 'main:home' %} class="mb-4">Retour à la liste</a>
+
+    <form class="d-flex flex-column align-items-center w-100 mb-3" method="post" novalidate>
+
+        {% csrf_token %}
+
+        <!-- Name -->
+        <div class="form-group">
+            {{ form.name.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.name.errors %}
+                    {% render_field form.name class="form-control is-invalid" %}
+                    {% for error in form.name.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.name class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.name class="form-control" %}
+            {% endif %}
+
+            {% if form.name.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.name.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Birth -->
+        <div class="form-group">
+            {{ form.birth.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.birth.errors %}
+                    {% render_field form.birth class="form-control is-invalid" %}
+                    {% for error in form.birth.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.birth class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.birth class="form-control" %}
+            {% endif %}
+
+            {% if form.birth.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.birth.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Entry -->
+        <div class="form-group">
+            {{ form.entry.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.entry.errors %}
+                    {% render_field form.entry class="form-control is-invalid" %}
+                    {% for error in form.entry.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.entry class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.entry class="form-control" %}
+            {% endif %}
+
+            {% if form.entry.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.entry.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Habit -->
+        <div class="form-group">
+            {{ form.habit.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.habit.errors %}
+                    {% render_field form.habit class="form-control is-invalid" %}
+                    {% for error in form.habit.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.habit class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.habit class="form-control" %}
+            {% endif %}
+
+            {% if form.habit.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.habit.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Temporary profession -->
+        <div class="form-group">
+            {{ form.temporary_profession.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.temporary_profession.errors %}
+                    {% render_field form.temporary_profession class="form-control is-invalid" %}
+                    {% for error in form.temporary_profession.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.temporary_profession class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.temporary_profession class="form-control" %}
+            {% endif %}
+
+            {% if form.temporary_profession.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.temporary_profession.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Perpetual profession -->
+        <div class="form-group">
+            {{ form.perpetual_profession.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.perpetual_profession.errors %}
+                    {% render_field form.perpetual_profession class="form-control is-invalid" %}
+                    {% for error in form.perpetual_profession.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.perpetual_profession class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.perpetual_profession class="form-control" %}
+            {% endif %}
+
+            {% if form.perpetual_profession.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.perpetual_profession.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Ordination -->
+        <div class="form-group">
+            {{ form.ordination.label_tag }}
+
+            {% if form.is_bound %}
+                {% if form.ordination.errors %}
+                    {% render_field form.ordination class="form-control is-invalid" %}
+                    {% for error in form.ordination.errors %}
+                        <div class="invalid-feedback" style="display: block;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field form.ordination class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.ordination class="form-control" %}
+            {% endif %}
+
+            {% if form.ordination.help_text %}
+                <small class="form-text text-muted">
+                    {{ form.ordination.help_text }}
+                </small>
+            {% endif %}
+        </div>
+
+        <!-- Validation -->
+        <div class="d-flex justify-content-center">
+            <a href={% url 'main:home' %} class="btn btn-primary mx-3">Annuler</a>
+            <button type="submit" class="btn btn-success mx-3">Valider</button>
+        </div>
+    </form>
+{% endblock content %}
