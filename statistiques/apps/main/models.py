@@ -12,11 +12,11 @@ class Monk(models.Model):
     birth = models.DateField(
         db_column='naissance',
     )
-    rank = models.SmallIntegerField(
-        db_column='rang',
-    )
     entry = models.DateField(
         db_column='entree',
+    )
+    rank = models.SmallIntegerField(
+        db_column='rang',
     )
     habit = models.DateField(
         db_column='prise_habit',

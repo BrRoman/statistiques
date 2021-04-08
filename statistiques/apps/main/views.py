@@ -1,10 +1,10 @@
 """ apps/statistiques/views.py """
 
-import numpy
 
 from datetime import date
-from matplotlib import pyplot
 from statistics import mean
+import numpy
+from matplotlib import pyplot
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
@@ -14,7 +14,7 @@ from .models import Monk
 
 
 def home(request):
-    """ Home view of statistiques. """
+    """ Home page of statistiques. """
     list_of_monks = Monk.objects.all().order_by('entry')
     postulants = len(
         Monk.objects
