@@ -3,12 +3,13 @@
 
 from datetime import date
 from statistics import mean
+import os
 import numpy
 from matplotlib import pyplot
 
+from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
-
 from .forms import MonkForm
 from .models import Monk
 
@@ -82,7 +83,7 @@ def home(request):
         fontsize=10
     )
     pyplot.savefig(
-        '/home/frromain/Sites/statistiques/statistiques/static/img/histogram.svg',
+        os.path.join(settings.BASE_DIR, 'static/img/histogram.svg'),
         format='svg',
     )
 
