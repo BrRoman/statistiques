@@ -116,8 +116,6 @@ def update(request, **kwargs):
     else:
         form = MonkForm(instance=monk)
 
-    print(form)
-
     return render(
         request,
         'main/form.html',
